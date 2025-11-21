@@ -10,11 +10,15 @@ echo "=================================="
 echo ""
 
 # Check Python version
-PYTHON_VERSION=$(python3 --version 2>&1 | grep -oP '\d+\.\d+')
-REQUIRED_VERSION="3.10"
+PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}' | cut -d. -f1,2)
+REQUIRED_MAJOR=3
+REQUIRED_MINOR=12
 
-if (( $(echo "$PYTHON_VERSION < $REQUIRED_VERSION" | bc -l) )); then
-    echo "❌ Python 3.10+ is required. You have Python $PYTHON_VERSION"
+MAJOR=$(echo $PYTHON_VERSION | cut -d. -f1)
+MINOR=$(echo $PYTHON_VERSION | cut -d. -f2)
+
+if [ "$MAJOR" -lt "$REQUIRED_MAJOR" ] || ([ "$MAJOR" -eq "$REQUIRED_MAJOR" ] && [ "$MINOR" -lt "$REQUIRED_MINOR" ]); then
+    echo "❌ Python 3.12+ is required. You have Python $PYTHON_VERSION"
     exit 1
 fi
 
@@ -39,7 +43,17 @@ fi
 echo ""
 echo "📦 Installing backend dependencies..."
 cd backend
-pip install -r requirements.txt > /dev/null 2>&1
+
+# Check if uv is installed
+if ! command -v uv &> /dev/null; then
+    echo "❌ uv is not installed. Please install it first:"
+    echo "   curl -LsSf https://astral.sh/uv/install.sh | sh"
+    echo "   Or visit: https://docs.astral.sh/uv/"
+    exit 1
+fi
+
+uv sync > /dev/null 2>&1
+echo "✅ Backend dependencies installed"
 
 # Create .env file
 if [ ! -f .env ]; then
@@ -59,20 +73,24 @@ echo "✅ Frontend dependencies installed"
 echo ""
 echo "🔍 Indexing documentation..."
 cd ../backend
-python -m scripts.index_docs
+uv run python -m scripts.index_docs
 
 echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "To start the demo:"
 echo ""
-echo "Terminal 1 (Backend):"
-echo "  cd backend"
-echo "  uvicorn main:app --reload"
+echo "Option 1: Run both services automatically"
+echo "  ./run.sh"
 echo ""
-echo "Terminal 2 (Frontend):"
-echo "  cd frontend"
-echo "  mkdocs serve"
+echo "Option 2: Run manually in separate terminals"
+echo "  Terminal 1 (Backend):"
+echo "    cd backend"
+echo "    uv run uvicorn main:app --reload"
+echo ""
+echo "  Terminal 2 (Frontend):"
+echo "    cd frontend"
+echo "    mkdocs serve"
 echo ""
 echo "Then open http://localhost:8000 in your browser"
 echo ""

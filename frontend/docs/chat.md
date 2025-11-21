@@ -2,16 +2,6 @@
 
 Ask questions about our documentation in natural language. The assistant will search through all available documentation and provide answers with citations to the relevant sections.
 
-## Model Selection
-
-Choose from multiple AI models to power your queries:
-- **Gemini (default)** - Google's Gemini 2.5 Flash model, fast and accurate
-- **Groq Llama 3.1 8B** - Fast inference with Meta's Llama 3.1 8B model via Groq
-- **Groq Llama 3.1 70B** - More powerful Llama model for complex queries
-- **Groq Mixtral 8x7B** - Mistral's mixture-of-experts model
-
-*Note: Groq models require a GROQ_API_KEY to be configured in the backend. Embeddings always use Gemini for consistency.*
-
 <div id="chat-container">
     <div id="chat-messages"></div>
     <div id="chat-input-container">

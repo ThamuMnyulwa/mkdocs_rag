@@ -65,18 +65,41 @@ mkdocs_rag/
 
 ### Prerequisites
 
-- Python 3.10+
+- Python 3.12+
 - [uv](https://docs.astral.sh/uv/) package manager
 - Google Gemini API key ([Get one here](https://ai.google.dev/))
 
-### 1. Clone and Setup
+### Option 1: Automated Setup (Recommended)
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd mkdocs_rag
+
+# Set your Gemini API key
+export GOOGLE_API_KEY=your_key_here
+
+# Run setup script (installs dependencies and indexes docs)
+./setup.sh
+
+# Start both backend and frontend services
+./run.sh
+```
+
+Then open http://localhost:8000 in your browser!
+
+Press `Ctrl+C` to stop both services.
+
+### Option 2: Manual Setup
+
+#### 1. Clone and Setup
 
 ```bash
 git clone <repository-url>
 cd mkdocs_rag
 ```
 
-### 2. Backend Setup
+#### 2. Backend Setup
 
 ```bash
 cd backend
@@ -97,7 +120,7 @@ uv run uvicorn main:app --reload
 
 The backend API will be available at http://localhost:8000
 
-### 3. Frontend Setup
+#### 3. Frontend Setup
 
 Open a new terminal:
 
@@ -111,7 +134,7 @@ mkdocs serve
 
 The documentation site will be available at http://localhost:8000 (or 8001 if 8000 is taken)
 
-### 4. Try It Out!
+### Try It Out!
 
 1. Open the documentation site in your browser
 2. Navigate to the "Chat Assistant" page
@@ -337,7 +360,7 @@ The `HybridRetriever` class in `backend/rag/retriever.py` provides an extension 
 ## Technology Stack
 
 - **Frontend**: MkDocs, Material for MkDocs, Vanilla JavaScript
-- **Backend**: FastAPI, Python 3.10+
+- **Backend**: FastAPI, Python 3.12+
 - **LLM**: Google Gemini (embeddings + generation)
 - **Vector Store**: ChromaDB (demo) / PostgreSQL + pgvector (production)
 - **Deployment**: GCP (Cloud Run, Firebase Hosting)
