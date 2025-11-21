@@ -61,3 +61,6 @@ htmlcov/
 *.tfstate
 *.tfstate.backup
 .terraform/
+
+# ChromaDB database
+chroma_db 
