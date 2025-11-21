@@ -35,6 +35,11 @@ wheels/
 *.swo
 *~
 
+# Ignore markdown files ONLY in root
+/*.md
+!README.md
+
+
 # MkDocs
 frontend/site/
 
