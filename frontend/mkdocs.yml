@@ -1,0 +1,61 @@
+site_name: Internal Documentation Hub
+site_description: Company runbooks, processes, and technical documentation
+site_author: Demo Company
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  icon:
+    logo: material/book-open-variant
+
+nav:
+  - Home: index.md
+  - Chat Assistant: chat.md
+  - Runbooks:
+      - Incident Response: runbooks/incident-response.md
+      - Database Maintenance: runbooks/database-maintenance.md
+  - How-To Guides:
+      - Deployment Process: howtos/deployment.md
+      - Access Requests: howtos/access-requests.md
+  - Policies:
+      - Security Policy: policies/security.md
+
+extra:
+  backend_api_url: http://localhost:8001
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js
+  - js/chat.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+
