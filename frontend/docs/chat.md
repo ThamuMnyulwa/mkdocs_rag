@@ -5,7 +5,7 @@ Ask questions about our documentation in natural language. The assistant will se
 ## Model Selection
 
 Choose from multiple AI models to power your queries:
-- **Gemini (default)** - Google's Gemini 1.5 Flash model, fast and accurate
+- **Gemini (default)** - Google's Gemini 2.5 Flash model, fast and accurate
 - **Groq Llama 3.1 8B** - Fast inference with Meta's Llama 3.1 8B model via Groq
 - **Groq Llama 3.1 70B** - More powerful Llama model for complex queries
 - **Groq Mixtral 8x7B** - Mistral's mixture-of-experts model

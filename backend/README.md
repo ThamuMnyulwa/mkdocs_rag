@@ -6,7 +6,7 @@ This directory contains the FastAPI backend that powers the documentation chat a
 
 1. Install dependencies:
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
 
 2. Configure environment variables:
@@ -17,12 +17,12 @@ cp .env.example .env
 
 3. Index the documentation:
 ```bash
-python -m scripts.index_docs
+uv run python -m scripts.index_docs
 ```
 
 4. Run the development server:
 ```bash
-uvicorn main:app --reload
+uv run uvicorn main:app --reload
 ```
 
 The API will be available at http://localhost:8000

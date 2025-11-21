@@ -9,7 +9,6 @@ This project showcases:
 - 💬 **Chat Assistant** - Ask questions in natural language and get answers from the docs
 - 🔍 **RAG Pipeline** - Custom retrieval system using Gemini embeddings and ChromaDB
 - 📎 **Source Citations** - Every answer includes cited sections from the documentation
-- 🚀 **GCP Ready** - Designed for easy deployment to Google Cloud Platform
 
 ## Architecture
 
@@ -56,7 +55,8 @@ mkdocs_rag/
 │   ├── tests/
 │   ├── main.py              # FastAPI application
 │   ├── config.py            # Configuration
-│   └── requirements.txt
+│   ├── pyproject.toml       # uv dependencies
+│   └── uv.lock              # Dependency lock file
 │
 └── README.md
 ```
@@ -66,6 +66,7 @@ mkdocs_rag/
 ### Prerequisites
 
 - Python 3.10+
+- [uv](https://docs.astral.sh/uv/) package manager
 - Google Gemini API key ([Get one here](https://ai.google.dev/))
 
 ### 1. Clone and Setup
@@ -79,17 +80,19 @@ cd mkdocs_rag
 
 ```bash
 cd backend
-pip install -r requirements.txt
+
+# Install dependencies using uv
+uv sync
 
 # Configure environment
 cp .env.example .env
 # Edit .env and add your GOOGLE_API_KEY
 
 # Index the documentation
-python -m scripts.index_docs
+uv run python -m scripts.index_docs
 
 # Start the API server
-uvicorn main:app --reload
+uv run uvicorn main:app --reload
 ```
 
 The backend API will be available at http://localhost:8000
@@ -138,7 +141,7 @@ The documentation site will be available at http://localhost:8000 (or 8001 if 80
 - Document chunking by headers with overlap
 - Gemini text embeddings (models/embedding-001)
 - ChromaDB vector storage
-- Gemini 1.5 Flash for answer generation
+- Gemini 2.5 Flash for answer generation
 - Configurable retrieval parameters
 
 ## Configuration
@@ -158,7 +161,7 @@ CHROMA_PERSIST_DIR=./chroma_db
 
 # RAG Parameters
 EMBEDDING_MODEL=models/embedding-001
-GENERATION_MODEL=gemini-1.5-flash
+GENERATION_MODEL=gemini-2.5-flash
 GROQ_GENERATION_MODEL=llama-3.1-8b-instant
 CHUNK_SIZE=500
 CHUNK_OVERLAP=100
@@ -212,7 +215,7 @@ curl -X POST http://localhost:8000/api/reindex
 
 ```bash
 cd backend
-python -m scripts.index_docs
+uv run python -m scripts.index_docs
 ```
 
 ### What Happens During Reindexing
@@ -244,7 +247,7 @@ python -m scripts.index_docs
 
 ```bash
 cd backend
-pytest tests/
+uv run pytest tests/
 ```
 
 ### Demo Questions
@@ -326,7 +329,7 @@ The `HybridRetriever` class in `backend/rag/retriever.py` provides an extension 
 - Verify CORS settings in `backend/main.py`
 
 ### No search results
-- **Reindex the vector store**: `curl -X POST http://localhost:8000/api/reindex` or run `python -m scripts.index_docs`
+- **Reindex the vector store**: `curl -X POST http://localhost:8000/api/reindex` or run `uv run python -m scripts.index_docs`
 - Check logs for embedding errors
 - Verify `DOCS_PATH` points to correct location
 - Ensure documents exist in the configured path
