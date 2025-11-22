@@ -58,6 +58,10 @@ mkdocs_rag/
 │   ├── pyproject.toml       # uv dependencies
 │   └── uv.lock              # Dependency lock file
 │
+├── notebooks/            # Interactive learning notebooks
+│   ├── 01_local_rag_no_cloud.ipynb      # Local RAG basics
+│   └── 02_simple_vertex_ai_rag.ipynb    # Vertex AI RAG
+│
 └── README.md
 ```
 
@@ -142,6 +146,45 @@ The documentation site will be available at http://localhost:8000 (or 8001 if 80
    - "How do I handle a SEV-1 incident?"
    - "What is the deployment process?"
    - "How do I request production database access?"
+
+## Learning Path: Interactive Notebooks 📓
+
+We've created hands-on Jupyter notebooks that take you from zero to building RAG Applications with Vertex AI using Google's RAG Engine.
+
+**Follow these notebooks in order for the best learning experience:**
+
+### 1. Local RAG (No Cloud Required) 🏠
+
+**File:** `notebooks/01_local_rag_no_cloud.ipynb`
+
+**Duration:** 5-10 minutes  
+**Prerequisites:** None  
+**Cost:** $0 (runs entirely locally in colab)  
+**Best for:** Understanding RAG fundamentals, privacy-conscious use cases
+
+Learn the core concepts of RAG using local tools: HuggingFace embeddings, FAISS vector store, and local LLM inference. Perfect for understanding how each component works without needing any cloud accounts.
+
+### 2. Simple Vertex AI RAG Engine 🚀
+
+**File:** `notebooks/02_simple_vertex_ai_rag.ipynb`
+
+**Duration:** 10-15 minutes  
+**Prerequisites:** Google Cloud account, billing enabled  
+**Cost:** ~$0.10-0.50 per run  
+**Best for:** Quick production deployment with minimal code
+
+Experience the managed RAG approach with Vertex AI's RAG Engine, handling infrastructure automatically. See how Google's managed service can accelerate your RAG deployments.
+
+### Additional Learning Resources
+
+Here is a great source to learn more about Google's RAG Engine capabilities and best practices
+
+**📺 Video Tutorial:** [Building RAG Applications with Vertex AI](https://www.youtube.com/watch?v=sgKB04yMD70)  
+
+
+### Running the Notebooks
+
+Open them directly in Google Colab using the badges in each notebook!
 
 ## Features
 
