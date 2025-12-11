@@ -55,3 +55,4 @@ async def test_chat_endpoint_structure():
             assert "answer" in data
             assert "sources" in data
 
+

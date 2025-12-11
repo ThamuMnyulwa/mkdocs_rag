@@ -10,7 +10,7 @@
         return;
     }
 
-    const API_BASE_URL = window.mkdocs_config?.extra?.backend_api_url || 'http://localhost:8001';
+    const API_BASE_URL = window.mkdocs_config?.extra?.backend_api_url || 'http://localhost:8000';
     const SESSION_STORAGE_KEY = 'chat_session_id';
     
     let currentSessionId = sessionStorage.getItem(SESSION_STORAGE_KEY);

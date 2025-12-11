@@ -196,3 +196,4 @@ class ChatDatabase:
             await db.execute("DELETE FROM chat_sessions WHERE id = ?", (session_id,))
             await db.commit()
             logger.info(f"Deleted chat session: {session_id}")
+

@@ -207,3 +207,4 @@ async def ingest_docs(vector_store: VectorStore) -> int:
     
     return len(all_chunks)
 
+

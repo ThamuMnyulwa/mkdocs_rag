@@ -49,3 +49,4 @@ def test_chunk_metadata():
     assert chunks[0].doc_path == "test.md"
     assert "section" in chunks[0].metadata
 
+

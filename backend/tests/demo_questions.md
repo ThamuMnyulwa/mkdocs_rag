@@ -79,3 +79,4 @@ Use these questions to demonstrate the RAG system capabilities:
 21. **What is the meaning of life?**
     - Expected: Should indicate this is outside the scope of documentation
 
+

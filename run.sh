@@ -34,7 +34,7 @@ cd ..
 
 echo "Starting frontend..."
 cd frontend
-mkdocs serve > ../frontend.log 2>&1 &
+./venv/bin/mkdocs serve -a 127.0.0.1:8001 > ../frontend.log 2>&1 &
 FRONTEND_PID=$!
 cd ..
 
@@ -43,7 +43,7 @@ sleep 2
 echo ""
 echo "Services running:"
 echo "  Backend:  http://localhost:8000"
-echo "  Frontend: http://localhost:8000 (or 8001)"
+echo "  Frontend: http://localhost:8001"
 echo ""
 echo "Press Ctrl+C to stop"
 echo ""
